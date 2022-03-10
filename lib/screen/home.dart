@@ -131,11 +131,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Image.file(_image!),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 15,
                           ),
                           _output != null
                               ? Text(
-                                  "${_output![1]['label']}",
+                                  "${_output![0]['label']}",
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -156,8 +156,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: MediaQuery.of(context).size.width - 260,
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 17,
+                        horizontal: 27,
+                        vertical: 15,
                       ),
                       decoration: BoxDecoration(
                         color: const Color(
@@ -172,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 20,
                   ),
                   GestureDetector(
                     onTap: pickGalleryImage,
@@ -180,8 +180,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: MediaQuery.of(context).size.width - 260,
                       alignment: Alignment.center,
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 17,
+                        horizontal: 27,
+                        vertical: 15,
                       ),
                       decoration: BoxDecoration(
                         color: const Color(
