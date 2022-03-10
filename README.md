@@ -1,4 +1,4 @@
-# cats_dog_detector_app
+# cat_vs_dog_detector_app
 
 A new Flutter project.
 
