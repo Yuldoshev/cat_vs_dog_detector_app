@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
       splash: 'assets/cat.png',
       backgroundColor: Colors.yellow,
       duration: 3000,
-      splashIconSize: 360,
+      splashIconSize: 300,
       nextScreen: HomeScreen(),
       splashTransition: SplashTransition.rotationTransition,
       //pageTransitionType: PageTransitionType.scale,
