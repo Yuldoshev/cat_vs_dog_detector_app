@@ -81,124 +81,126 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF101010),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              height: 100,
-            ),
-            const Text(
-              "Teachablemachine CNN",
-              style: TextStyle(
-                color: Color(0xFFEEDA28),
-                fontSize: 15,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 100,
               ),
-            ),
-            const SizedBox(
-              height: 6,
-            ),
-            const Text(
-              "Detect Cats and Dogs",
-              style: TextStyle(
-                color: Color(0xFFE99600),
-                fontSize: 28,
-                fontWeight: FontWeight.w500,
+              const Text(
+                "Teachablemachine CNN",
+                style: TextStyle(
+                  color: Color(0xFFEEDA28),
+                  fontSize: 15,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 50,
-            ),
-            Center(
-              child: _loading
-                  ? SizedBox(
-                      width: 300,
-                      child: Column(
-                        children: [
-                          Image.asset("assets/cat.png"),
-                          const SizedBox(
-                            height: 50,
+              const SizedBox(
+                height: 6,
+              ),
+              const Text(
+                "Detect Cats and Dogs",
+                style: TextStyle(
+                  color: Color(0xFFE99600),
+                  fontSize: 28,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: _loading
+                    ? SizedBox(
+                        width: 300,
+                        child: Column(
+                          children: [
+                            Image.asset("assets/cat.png"),
+                            const SizedBox(
+                              height: 50,
+                            ),
+                          ],
+                        ),
+                      )
+                    : Container(
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 250.0,
+                              child: Image.file(_image!),
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            _output != null
+                                ? Text(
+                                    "${_output![0]['label']}",
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                    ),
+                                  )
+                                : Container(),
+                          ],
+                        ),
+                      ),
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: pickImage,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 260,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 27,
+                          vertical: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(
+                            0xFFE99600,
                           ),
-                        ],
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: const Text(
+                          "Take Photo",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: pickGalleryImage,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 260,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 27,
+                          vertical: 15,
+                        ),
+                        decoration: BoxDecoration(
+                          color: const Color(
+                            0xFFE99600,
+                          ),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: const Text(
+                          "Camera Roll",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     )
-                  : Container(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 250.0,
-                            child: Image.file(_image!),
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          _output != null
-                              ? Text(
-                                  "${_output![0]['label']}",
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                  ),
-                                )
-                              : Container(),
-                        ],
-                      ),
-                    ),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: pickImage,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width - 260,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 27,
-                        vertical: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(
-                          0xFFE99600,
-                        ),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: const Text(
-                        "Take Photo",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  GestureDetector(
-                    onTap: pickGalleryImage,
-                    child: Container(
-                      width: MediaQuery.of(context).size.width - 260,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 27,
-                        vertical: 15,
-                      ),
-                      decoration: BoxDecoration(
-                        color: const Color(
-                          0xFFE99600,
-                        ),
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                      child: const Text(
-                        "Camera Roll",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
-                  )
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
