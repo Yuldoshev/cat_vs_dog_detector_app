@@ -1,2 +1,2 @@
-0 Kuchuk
-1 Mushuk
+0 Dog
+1 Cat

@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         asynch: true);
     setState(() {
       _loading = false;
-      _output = output;
+      _output = output!;
     });
   }
 
@@ -133,11 +133,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Image.file(_image!),
                             ),
                             const SizedBox(
-                              height: 15,
+                              height: 20,
                             ),
                             _output!.isNotEmpty
                                 ? Text(
-                                    "${_output![0]['label']}",
+                                    "${_output![0]['label'].toString()}",
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 20,
