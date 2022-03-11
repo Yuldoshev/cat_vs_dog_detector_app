@@ -13,8 +13,23 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final picker = ImagePicker();
   File? _image;
-  bool _loading = false;
+  bool _loading = true;
   List? _output;
+
+  classifyImage(File image) async {
+    var output = await Tflite.runModelOnImage(
+        path: image.path,
+        numResults: 2,
+        threshold: 0.5,
+        imageMean: 127.5,
+        imageStd: 127.5,
+        asynch: true);
+    setState(() {
+      _loading = false;
+      _output = output;
+    });
+  }
+
   pickImage() async {
     var image = await picker.pickImage(source: ImageSource.camera);
 
@@ -45,29 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _loading = true;
     loadModel().then((value) {
-      //
+      setState(() {});
     });
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    Tflite.close();
-    super.dispose();
-  }
-
-  classifyImage(File image) async {
-    var output = await Tflite.runModelOnImage(
-      path: image.path,
-      numResults: 2,
-      threshold: 0.5,
-      imageMean: 127.5,
-      imageStd: 127.5,
-    );
-    setState(() {
-      _loading = false;
-      _output = output;
-    });
   }
 
   loadModel() async {
@@ -75,6 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
       model: "assets/model_unquant.tflite",
       labels: "assets/labels.txt",
     );
+  }
+
+  @override
+  void dispose() {
+    Tflite.close();
+    super.dispose();
   }
 
   @override
@@ -134,7 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             const SizedBox(
                               height: 15,
                             ),
-                            _output != null
+                            _output!.isNotEmpty
                                 ? Text(
                                     "${_output![0]['label']}",
                                     style: const TextStyle(
