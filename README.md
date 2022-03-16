@@ -1,6 +1,6 @@
 # cat_vs_dog_detector_app
 
-A new Flutter project.
+Deep Learning with Flutter & Python
 
 ## Getting Started
 
